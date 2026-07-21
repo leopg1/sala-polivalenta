@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sala Polivalentă București — website
 
-## Getting Started
+Redesign 2026 al site-ului **Complexului Sportiv Național „Sala Polivalentă"** din București (instituție publică, arenă de 5.300 de locuri). Design dark cinematic, animat, mobile-first.
 
-First, run the development server:
+![Made with Next.js](https://img.shields.io/badge/Next.js-16-black) ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind-v4-38bdf8) ![status](https://img.shields.io/badge/status-prototype-orange)
+
+## ✨ Ce include
+
+- **Homepage** animată — hero cinematic cu parallax, ticker, statistici count-up, bento „ce găzduim", program live, galerie, hub de transparență, CTA
+- **Program** — calendar filtrabil pe **545 de evenimente** reale, 13 discipline
+- **Informare Publică** — hub cu **căutare + filtre** peste **218 documente** publice (concursuri, declarații de avere, buget, transparență salarială, organigramă, regulamente)
+- **Galerie** cu lightbox, **Despre/Istoric**, **Contact** (formular + hartă)
+- Pagini legale: Termeni, Confidențialitate, Cookies, GDPR
+- **SEO**: JSON-LD (`SportsActivityLocation` + `GovernmentOrganization`), sitemap, robots, OG dinamic, redirects 301
+
+## 🛠️ Stack
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Motion · Lenis (smooth scroll) · GSAP · lucide-react · react-markdown
+
+## 🚀 Rulare locală
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # build de producție
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Structură
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/           rute (App Router) + sitemap/robots/icon/og
+components/    sections/ · layout/ · ui/ · program/ · informare/ · galerie/ · contact/
+lib/           site.ts · format.ts · motion.ts · data/ (program, documents, gallery)
+content/legal/ texte legale (markdown)
+public/images/ venue · galerie · istoric · logo
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📌 De finalizat înainte de lansare
 
-## Learn More
+- Migrare documente în storage (Supabase) + panou admin editabil pentru secretariat
+- Confirmare denumire minister și program secretariat
+- Redirects 301 din URL-urile vechi de documente
+- Logo vectorial oficial
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Realizat de [Orevo](https://orevo.ro). Detalii tehnice în [`CLAUDE.md`](CLAUDE.md).
