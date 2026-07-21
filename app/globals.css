@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
+/* ============================================================
+   CSN Sala Polivalentă — design system (dark cinematic)
+   Brand: roșu energic (arena) + albastru instituțional (text logo)
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* base surfaces — deep near-black navy */
+  --background: #060912;
+  --background-soft: #0a0f1e;
+  --foreground: #eef2fb;
+
+  --card: #0d1424;
+  --card-soft: #111a2e;
+  --muted: #131c31;
+  --muted-foreground: #8b98b6;
+
+  --border: #1c2740;
+
+  /* brand — red (energie) */
+  --primary: #ff2e43;
+  --primary-strong: #e11029;
+  --primary-foreground: #ffffff;
+
+  /* brand — blue (instituțional) */
+  --secondary: #2e6bff;
+  --secondary-strong: #1a4fe0;
+  --secondary-foreground: #ffffff;
+
+  --ring: #ff2e43;
+  --radius: 0.85rem;
+
+  /* red scale */
+  --red-50: #fff1f2;  --red-100: #ffe0e3; --red-200: #ffc2c8;
+  --red-300: #ff97a1; --red-400: #ff5c6c; --red-500: #ff2e43;
+  --red-600: #e11029; --red-700: #bd0b20; --red-800: #9c0f20; --red-900: #810f1f;
+
+  /* blue scale */
+  --blue-50: #eff4ff;  --blue-100: #dbe6ff; --blue-200: #bfd2ff;
+  --blue-300: #93b3ff; --blue-400: #6089ff; --blue-500: #2e6bff;
+  --blue-600: #1a4fe0; --blue-700: #1540c4; --blue-800: #17389f; --blue-900: #18337d;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-soft: var(--card-soft);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-strong: var(--secondary-strong);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-ring: var(--ring);
+
+  --color-red-50: var(--red-50);   --color-red-100: var(--red-100); --color-red-200: var(--red-200);
+  --color-red-300: var(--red-300); --color-red-400: var(--red-400); --color-red-500: var(--red-500);
+  --color-red-600: var(--red-600); --color-red-700: var(--red-700); --color-red-800: var(--red-800); --color-red-900: var(--red-900);
+  --color-blue-50: var(--blue-50);   --color-blue-100: var(--blue-100); --color-blue-200: var(--blue-200);
+  --color-blue-300: var(--blue-300); --color-blue-400: var(--blue-400); --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600); --color-blue-700: var(--blue-700); --color-blue-800: var(--blue-800); --color-blue-900: var(--blue-900);
+
+  --radius: var(--radius);
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+
+  --animate-marquee: marquee 40s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
+
+* { border-color: var(--border); }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
+
+::selection { background: var(--primary); color: #fff; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: #1e2a45; border-radius: 99px; border: 2px solid var(--background); }
+::-webkit-scrollbar-thumb:hover { background: #2a3a5e; }
+
+/* ---------- utilities ---------- */
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--red-400) 0%, #ffffff 42%, var(--blue-400) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-red {
+  background: linear-gradient(100deg, #ff6b78 0%, var(--primary) 55%, var(--primary-strong) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+}
+
+/* soft grain overlay for cinematic texture */
+@utility grain {
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* spotlight radial glow */
+@utility spotlight {
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(255,46,67,0.16), transparent 70%),
+    radial-gradient(46% 42% at 82% 15%, rgba(46,107,255,0.16), transparent 70%);
+}
+
+/* card with subtle top highlight */
+@utility card-glow {
+  background: linear-gradient(180deg, var(--card-soft), var(--card));
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 0 rgba(255,255,255,0.04) inset, 0 24px 60px -30px rgba(0,0,0,0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+.md-content h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin: 2rem 0 0.75rem; }
+.md-content h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+.md-content p { color: var(--muted-foreground); line-height: 1.75; margin-bottom: 1rem; }
+.md-content ul { list-style: disc; padding-left: 1.25rem; color: var(--muted-foreground); margin-bottom: 1rem; }
+.md-content a { color: var(--blue-400); text-decoration: underline; }
