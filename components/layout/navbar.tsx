@@ -43,7 +43,7 @@ export function Navbar() {
             : "border-b border-transparent bg-transparent"
         )}
       >
-        <nav className="container-x flex h-[4.5rem] items-center justify-between gap-4">
+        <nav className="container-x flex h-20 items-center justify-between gap-4 md:h-[5.5rem]">
           <Logo />
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -96,7 +96,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 top-[4.5rem] z-40 bg-background/95 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 top-20 z-40 bg-background/95 backdrop-blur-xl md:top-[5.5rem] lg:hidden"
           >
             <div className="container-x flex flex-col gap-1 py-8">
               {nav.map((item, i) => {
